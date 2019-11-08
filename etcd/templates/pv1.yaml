@@ -1,0 +1,24 @@
+{{- if .Values.persistence.enabled }}
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: etcd-pv1
+  labels:
+    type: local
+spec:
+  storageClassName: etcdclass
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+ {{if eq .Values.storageType "nfs"}}
+  nfs:
+    server: {{ .Values.nfs.serverIp }}
+    path: /nfs/etcd1
+ {{ else }}
+  glusterfs:
+    endpoints: glusterfs-cluster
+    path: gluster-volume/etcd1
+ {{- end }}
+
+{{- end }}

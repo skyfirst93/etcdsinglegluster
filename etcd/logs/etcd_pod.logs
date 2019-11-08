@@ -1,0 +1,59 @@
+kubectl logs -f etcd-0 
+==> Bash debug is off
+==> Detected data from previous deployments...
+==> Single node cluster detected!!
+2019-11-08 13:26:51.726620 I | pkg/flags: recognized and used environment variable ETCD_ADVERTISE_CLIENT_URLS=http://etcd-0.etcd-headless.default.svc.cluster.local:2379
+2019-11-08 13:26:51.726867 I | pkg/flags: recognized and used environment variable ETCD_DATA_DIR=/bitnami/etcd/data
+2019-11-08 13:26:51.726927 I | pkg/flags: recognized and used environment variable ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd-0.etcd-headless.default.svc.cluster.local:2380
+2019-11-08 13:26:51.727074 I | pkg/flags: recognized and used environment variable ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+2019-11-08 13:26:51.727111 I | pkg/flags: recognized and used environment variable ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+2019-11-08 13:26:51.727131 I | pkg/flags: recognized and used environment variable ETCD_NAME=etcd-0
+2019-11-08 13:26:51.727313 W | pkg/flags: unrecognized environment variable ETCD_SERVICE_PORT_PEER=2380
+2019-11-08 13:26:51.727334 W | pkg/flags: unrecognized environment variable ETCD_PORT_2379_TCP_PORT=2379
+2019-11-08 13:26:51.727341 W | pkg/flags: unrecognized environment variable ETCD_PORT_2379_TCP=tcp://10.233.62.13:2379
+2019-11-08 13:26:51.727347 W | pkg/flags: unrecognized environment variable ETCD_PORT_2380_TCP_ADDR=10.233.62.13
+2019-11-08 13:26:51.727353 W | pkg/flags: unrecognized environment variable ETCD_PORT_2380_TCP=tcp://10.233.62.13:2380
+2019-11-08 13:26:51.727359 W | pkg/flags: unrecognized environment variable ETCD_PORT_2379_TCP_PROTO=tcp
+2019-11-08 13:26:51.727363 W | pkg/flags: unrecognized environment variable ETCD_SERVICE_PORT_CLIENT=2379
+2019-11-08 13:26:51.727369 W | pkg/flags: unrecognized environment variable ETCD_SERVICE_HOST=10.233.62.13
+2019-11-08 13:26:51.727374 W | pkg/flags: unrecognized environment variable ETCD_PORT_2380_TCP_PROTO=tcp
+2019-11-08 13:26:51.727379 W | pkg/flags: unrecognized environment variable ETCD_PORT_2380_TCP_PORT=2380
+2019-11-08 13:26:51.727388 W | pkg/flags: unrecognized environment variable ETCD_SERVICE_PORT=2379
+2019-11-08 13:26:51.727485 W | pkg/flags: unrecognized environment variable ETCD_PORT_2379_TCP_ADDR=10.233.62.13
+2019-11-08 13:26:51.727496 W | pkg/flags: unrecognized environment variable ETCD_PORT=tcp://10.233.62.13:2379
+[WARNING] Deprecated '--logger=capnslog' flag is set; use '--logger=zap' flag instead
+2019-11-08 13:26:51.727590 I | etcdmain: etcd Version: 3.4.3
+2019-11-08 13:26:51.727599 I | etcdmain: Git SHA: 3cf2f69b5
+2019-11-08 13:26:51.727644 I | etcdmain: Go Version: go1.12.12
+2019-11-08 13:26:51.727664 I | etcdmain: Go OS/Arch: linux/amd64
+2019-11-08 13:26:51.727670 I | etcdmain: setting maximum number of CPUs to 8, total number of available CPUs is 8
+[WARNING] Deprecated '--logger=capnslog' flag is set; use '--logger=zap' flag instead
+2019-11-08 13:26:51.735456 I | embed: name = etcd-0
+2019-11-08 13:26:51.735503 I | embed: data dir = /bitnami/etcd/data
+2019-11-08 13:26:51.735513 I | embed: member dir = /bitnami/etcd/data/member
+2019-11-08 13:26:51.735519 I | embed: heartbeat = 100ms
+2019-11-08 13:26:51.735533 I | embed: election = 1000ms
+2019-11-08 13:26:51.735538 I | embed: snapshot count = 100000
+2019-11-08 13:26:51.735554 I | embed: advertise client URLs = http://etcd-0.etcd-headless.default.svc.cluster.local:2379
+{"level":"info","ts":1573219611.7526503,"caller":"netutil/netutil.go:112","msg":"resolved URL Host","url":"http://etcd-0.etcd-headless.default.svc.cluster.local:2380","host":"etcd-0.etcd-headless.default.svc.cluster.local:2380","resolved-addr":"10.233.96.103:2380"}
+{"level":"info","ts":1573219611.7528548,"caller":"netutil/netutil.go:112","msg":"resolved URL Host","url":"http://etcd-0.etcd-headless.default.svc.cluster.local:2380","host":"etcd-0.etcd-headless.default.svc.cluster.local:2380","resolved-addr":"10.233.96.103:2380"}
+2019-11-08 13:26:51.763619 C | etcdserver: create wal error: unlinkat /bitnami/etcd/data/member/wal.tmp: directory not empty
+panic: create wal error: unlinkat /bitnami/etcd/data/member/wal.tmp: directory not empty
+
+goroutine 1 [running]:
+github.com/coreos/pkg/capnslog.(*PackageLogger).Panicf(0xc0001e32a0, 0x1091342, 0x14, 0xc0002ee508, 0x1, 0x1)
+	/home/ec2-user/go/pkg/mod/github.com/coreos/pkg@v0.0.0-20160727233714-3ac0863d7acf/capnslog/pkg_logger.go:75 +0x135
+go.etcd.io/etcd/etcdserver.startNode(0xc00004203a, 0x6, 0x0, 0x0, 0x0, 0x0, 0xc0001a6e80, 0x1, 0x1, 0xc0001a7000, ...)
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/etcdserver/raft.go:438 +0xf1c
+go.etcd.io/etcd/etcdserver.NewServer(0xc00004203a, 0x6, 0x0, 0x0, 0x0, 0x0, 0xc0001a6e80, 0x1, 0x1, 0xc0001a7000, ...)
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/etcdserver/server.go:407 +0x4950
+go.etcd.io/etcd/embed.StartEtcd(0xc00018d080, 0xc00018d600, 0x0, 0x0)
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/embed/etcd.go:211 +0x9d0
+go.etcd.io/etcd/etcdmain.startEtcd(0xc00018d080, 0x108203d, 0x3, 0x1083001, 0x5)
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/etcdmain/etcd.go:302 +0x40
+go.etcd.io/etcd/etcdmain.startEtcdOrProxyV2()
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/etcdmain/etcd.go:160 +0x31cd
+go.etcd.io/etcd/etcdmain.Main()
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/etcdmain/main.go:46 +0x38
+main.main()
+	/tmp/etcd-release-3.4.3/etcd/release/etcd/main.go:28 +0x20
